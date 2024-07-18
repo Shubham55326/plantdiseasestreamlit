@@ -1,6 +1,7 @@
 from geopy.geocoders import Nominatim
 import streamlit as st
 import requests
+from geopy.geocoders import Photon
 
 hide_menu_style = """
     <style>
@@ -10,7 +11,8 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def weatherforecast(city):
-    geolocator = Nominatim(user_agent="MyApp")
+    geolocator = Photon(user_agent="MyApp")
+    # geolocator = Nominatim(user_agent="MyApp")
     location = geolocator.geocode(city)
     lat = location.latitude
     lon = location.longitude
