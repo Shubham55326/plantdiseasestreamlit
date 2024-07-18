@@ -27,4 +27,3 @@ if st.button('Login'):
     res2 = login(user2,pass2)
 if st.button('Click Here to Create Account'):
     st.switch_page('pages/signup.py')
-    

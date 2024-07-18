@@ -16,3 +16,5 @@ if st.button("Predict By Image Captured By Camera"):
 
 if st.button("Click Here For Weather Forecasting"):
     st.switch_page('pages/weather.py')
+if st.button('Log Out'):
+    st.switch_page('home.py')
