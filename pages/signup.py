@@ -1,6 +1,6 @@
 import streamlit as st
 from pymongo import MongoClient
-
+import ssl
 
 hide_menu_style = """
     <style>
@@ -8,8 +8,8 @@ hide_menu_style = """
     </style>
     """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
-
-client = MongoClient('mongodb+srv://shubhammeena55326:7067%40Smeena@cluster0.i87egsm.mongodb.net/')
+client = MongoClient('mongodb+srv://shubhammeena55326:7067%40Smeena@cluster0.i87egsm.mongodb.net/test?retryWrites=true&w=majority',ssl=True,
+    ssl_cert_reqs=ssl.CERT_NONE)
 db = client['lab']
 
 
