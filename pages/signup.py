@@ -18,7 +18,7 @@ def signup(name1,username1,password1):
         st.write('User Already Exist')
     collection1.insert_one({'Name':name1,'Username':username1,'Password':password1})
     st.switch_page('pages/plantdisease.py')
-
+st.title("Sign Up")
 name1 = st.text_input('Name')
 user1 = st.text_input('Username')
 pass1 = st.text_input('Password',type='password')

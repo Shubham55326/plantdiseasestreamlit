@@ -103,7 +103,7 @@ def weatherforecast(city):
     day3.write(f'State: {State}')
     day3.write(f'Country: {Country}')
     day3.write(f'Date and Time: {Date_and_Time}')
-
+st.write("Weather ForeCasting")
 city = st.text_input("City")
 if st.button('Get Data'):
     weatherforecast(city)

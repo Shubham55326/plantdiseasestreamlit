@@ -20,7 +20,7 @@ def login(username2,password2):
     st.write('Invalid Username Or Password')
 
 
-
+st.title("Log In")
 user2 = st.text_input('Username')
 pass2 = st.text_input('Password',type='password')
 if st.button('Login'):
