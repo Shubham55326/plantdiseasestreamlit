@@ -38,7 +38,7 @@ def predictimage12(uploaded_image):
     result = loaded_model.predict(image)
     score = tf.nn.softmax(result[0])
     st.title(cla[np.argmax(score)])
-st.write("Predict By Image File ")
+st.title("Predict By Image File ")
 file = st.file_uploader('Choose Your File')
 if st.button('Predict'):
     predictimage12(file)

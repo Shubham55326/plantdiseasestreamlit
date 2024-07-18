@@ -39,7 +39,7 @@ def predictimage(uploaded_image):
     result = loaded_model.predict(image)
     score = tf.nn.softmax(result[0])
     st.title(cla[np.argmax(score)])
-st.write("Predict By Capture Image ")
+st.title("Predict By Capture Image ")
 cam = st.camera_input('Capture  Image')
 if st.button('Predict'):
     predictimage(cam)
