@@ -1,8 +1,7 @@
-from geopy.geocoders import Nominatim
 import streamlit as st
 import requests
 from geopy.geocoders import Photon
-
+# from geopy.geocoders import Nominatim
 hide_menu_style = """
     <style>
     .st-emotion-cache-6qob1r {visibility: hidden;}
