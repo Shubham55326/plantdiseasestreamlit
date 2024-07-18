@@ -1,0 +1,8 @@
+geopy
+requests
+pymongo==3.12.3
+tensorflow
+keras
+numpy
+pandas
+Pillow
