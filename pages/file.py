@@ -18,8 +18,8 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 client = MongoClient('mongodb+srv://shubhammeena55326:7067%40Smeena@cluster0.i87egsm.mongodb.net/?tls=true&tlsAllowInvalidHostnames=true&tlsAllowInvalidCertificates=true')
 db = client['lab']
-collection = db['PlantDisease']
-doc = collection.find({},{"_id":0,'name':1,'children.name':1})
+collection1 = db['PlantDisease']
+doc = collection1.find({},{"_id":0,'name':1,'children.name':1})
 for i in doc:
     classes = i['children']
 value = []

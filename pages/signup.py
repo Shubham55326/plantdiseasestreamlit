@@ -1,6 +1,5 @@
 import streamlit as st
 from pymongo import MongoClient
-import ssl
 
 hide_menu_style = """
     <style>

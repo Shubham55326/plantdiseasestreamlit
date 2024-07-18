@@ -1,6 +1,5 @@
 import streamlit as st
 from pymongo import MongoClient
-import ssl
 hide_menu_style = """
     <style>
     .st-emotion-cache-6qob1r {visibility: hidden;}
@@ -9,15 +8,15 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 client = MongoClient('mongodb+srv://shubhammeena55326:7067%40Smeena@cluster0.i87egsm.mongodb.net/?tls=true&tlsAllowInvalidHostnames=true&tlsAllowInvalidCertificates=true')
-
 db = client['lab']
 
 def login(username2,password2):
     collection2 = db['UserData']
-    user2 = collection2.find_one({'Username':username2})
-    if user2 and user2['Password'] == password2:
+    user = collection2.find_one({'Username':username2})
+    if user and user['Password'] == password2:
         st.switch_page("pages/plantdisease.py")
     st.write('Invalid Username Or Password')
+
 
 
 st.title("Log In")
