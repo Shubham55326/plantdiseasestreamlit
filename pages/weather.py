@@ -90,7 +90,6 @@ def weatherforecast(city):
     day2.write(f'City: {City}')
     day2.write(f'State: {State}')
     day2.write(f'Country: {Country}')
-    day2.write(f'Date and Time: {Date_and_Time}')
     day3 = st.container(height=560,border=True)
     day3.image(image_url3)
     day3.write(f'Date: {date3}')
@@ -103,7 +102,6 @@ def weatherforecast(city):
     day3.write(f'City: {City}')
     day3.write(f'State: {State}')
     day3.write(f'Country: {Country}')
-    day3.write(f'Date and Time: {Date_and_Time}')
 st.title("Weather ForeCasting")
 city = st.text_input("City")
 if st.button('Get Data'):
