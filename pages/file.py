@@ -12,6 +12,11 @@ from PIL import Image
 hide_menu_style = """
     <style>
     .st-emotion-cache-6qob1r {visibility: hidden;}
+        .st-emotion-cache-zq5wmm {visibility: hidden;}
+        .st-emotion-cache-a8g6vw {visibility: hidden;}
+        .st-emotion-cache-ch5dnh {visibility: hidden;}
+        .st-emotion-cache-rawifx {visibility: hidden}
+        .st-emotion-cache-aw8l5d {visibility: hidden;}
     </style>
     """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
