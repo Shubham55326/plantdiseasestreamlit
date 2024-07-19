@@ -1,15 +1,7 @@
 import streamlit as st
-import tensorflow as tf
-from tensorflow import keras
-import numpy as np
-from keras.preprocessing.image import img_to_array
-from keras.models import load_model
-import pymongo
-from pymongo import MongoClient
-import pandas as pd
-from PIL import Image
-
-hide_menu_style ="""
+st.set_page_config(layout='wide')
+# Hide the "Switch Page" menu
+hide_menu_style = """
     <style>
         .st-emotion-cache-6qob1r {visibility: hidden;}
         .st-emotion-cache-zq5wmm {visibility: hidden;}
@@ -65,32 +57,22 @@ hide_menu_style ="""
     </footer>
     """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
+st.write("Hello Farmers")
+st.write("""Developed and implemented a deep learning model to accurately detect and diagnose
+plant and crop diseases from images, aiming to reduce crop loss and improve agricultural
+productivity.
+Responsibilities:
+* Collected and preprocessed large datasets of plant images, incorporating data 
+augmentation techniques to enhance model robustness and performance.
+* Designed and trained CNN models to classify images of plants and detect diseases with 
+high accuracy.
+* Fine-tuned models using transfer learning, leveraging pre-trained models to optimize 
+performance and reduce training time.
+* Validated the model with real-world data, achieving good accuracy and demonstrating 
+practical applicability in agricultural settings.
+* Deployed the solution using cloud services, ensuring scalability and accessibility for 
+farmers and agricultural stakeholders.
+* Collaborated with agricultural experts to tailor the model to address critical disease 
+identification needs.
+""")
 
-client = MongoClient('mongodb+srv://shubhammeena55326:7067%40Smeena@cluster0.i87egsm.mongodb.net/?tls=true&tlsAllowInvalidHostnames=true&tlsAllowInvalidCertificates=true')
-db = client['lab']
-collection1 = db['PlantDisease']
-doc = collection1.find({},{"_id":0,'name':1,'children.name':1})
-for i in doc:
-    classes = i['children']
-value = []
-for i in range(len(classes)):
-    value.append(classes[i]['name'])
-data = pd.DataFrame(value)
-for i in data:
-    cla = data[i]
-
-def predictimage12(uploaded_image):
-    loaded_model = load_model('model/PlantDiseaseDetection.h5')
-    image = Image.open(uploaded_image)
-    image = np.resize(image,(256,256,3))
-    image = tf.keras.utils.img_to_array(image)
-    image = np.expand_dims(image,axis = 0)
-    result = loaded_model.predict(image)
-    score = tf.nn.softmax(result[0])
-    st.title(cla[np.argmax(score)])
-st.title("Predict By Image File ")
-file = st.file_uploader('Choose Your File')
-if st.button('Predict'):
-    predictimage12(file)
-if st.button("Home"):
-    st.switch_page('pages/plantdisease.py')

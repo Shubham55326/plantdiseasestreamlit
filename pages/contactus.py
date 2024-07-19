@@ -1,15 +1,8 @@
 import streamlit as st
-import tensorflow as tf
-from tensorflow import keras
-import numpy as np
-from keras.preprocessing.image import img_to_array
-from keras.models import load_model
-import pymongo
-from pymongo import MongoClient
-import pandas as pd
-from PIL import Image
 
-hide_menu_style ="""
+st.set_page_config(layout='wide')
+# Hide the "Switch Page" menu
+hide_menu_style = """
     <style>
         .st-emotion-cache-6qob1r {visibility: hidden;}
         .st-emotion-cache-zq5wmm {visibility: hidden;}
@@ -65,32 +58,6 @@ hide_menu_style ="""
     </footer>
     """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
-
-client = MongoClient('mongodb+srv://shubhammeena55326:7067%40Smeena@cluster0.i87egsm.mongodb.net/?tls=true&tlsAllowInvalidHostnames=true&tlsAllowInvalidCertificates=true')
-db = client['lab']
-collection1 = db['PlantDisease']
-doc = collection1.find({},{"_id":0,'name':1,'children.name':1})
-for i in doc:
-    classes = i['children']
-value = []
-for i in range(len(classes)):
-    value.append(classes[i]['name'])
-data = pd.DataFrame(value)
-for i in data:
-    cla = data[i]
-
-def predictimage12(uploaded_image):
-    loaded_model = load_model('model/PlantDiseaseDetection.h5')
-    image = Image.open(uploaded_image)
-    image = np.resize(image,(256,256,3))
-    image = tf.keras.utils.img_to_array(image)
-    image = np.expand_dims(image,axis = 0)
-    result = loaded_model.predict(image)
-    score = tf.nn.softmax(result[0])
-    st.title(cla[np.argmax(score)])
-st.title("Predict By Image File ")
-file = st.file_uploader('Choose Your File')
-if st.button('Predict'):
-    predictimage12(file)
-if st.button("Home"):
-    st.switch_page('pages/plantdisease.py')
+st.write("Phone No.: +917000984255")
+st.write("Email: shubhammeena55326@gmail.com")
+st.write("Add.: Bhopal, Madhya Pradesh")
