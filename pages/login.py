@@ -38,17 +38,13 @@ hide_menu_style = """
             background-color: rgba(197, 192, 192, 0.534);
 
         }
-        .aboutus , .contactus , .image{
+        .aboutus , .contactus{
             display: inline-block;
             vertical-align: middle;
             margin: 0 10px;
         }
-        .image{
-            margin: 0% 77% 0% 0%;
-        }
     </style>
     <header class="header">
-    <div class="image"><img height="40px" width="40px" src="https://img.icons8.com/?size=100&id=pVyBXPHFH7vH&format=png&color=000000" alt="image"></div>
         <div class="aboutus"><a href="pages/aboutus.py"><img height="30px" width="30px" src="https://img.icons8.com/?size=100&id=hpQTfjUkuQEs&format=png&color=000000" alt="aboutus"></a></div>
         <div class="contactus"><a href="pages/contactus.py"><img height="30px" width="30px" src="https://img.icons8.com/?size=100&id=43480&format=png&color=000000" alt="contactus"></a></div>
     </header>
