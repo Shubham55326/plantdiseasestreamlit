@@ -53,7 +53,7 @@ hide_menu_style ="""
             margin: 0 10px;
         }
         .image{
-            margin: 0% 85% 0% 0%;
+            margin: 0% 77% 0% 0%;
         }
     </style>
     <header class="header">
