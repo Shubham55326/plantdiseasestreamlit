@@ -46,7 +46,7 @@ hide_menu_style = """
             margin: 0 10px;
         }
         .image{
-            margin: 0% 70% 0% 0%;
+            margin: 0% 80% 0% 0%;
         }
     </style>
     <header class="header">
