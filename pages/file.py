@@ -1,14 +1,9 @@
 import streamlit as st
 import tensorflow as tf
-from tensorflow import keras
 import numpy as np
-from keras.preprocessing.image import img_to_array
-from keras.models import load_model
-import pymongo
-from pymongo import MongoClient
 import pandas as pd
 from PIL import Image
-
+from pymongo import MongoClient
 hide_menu_style ="""
     <style>
         .st-emotion-cache-6qob1r {visibility: hidden;}
@@ -80,7 +75,7 @@ for i in data:
     cla = data[i]
 
 def predictimage12(uploaded_image):
-    loaded_model = load_model('model/PlantDiseaseDetection.h5')
+    loaded_model = tf.keras.models.load_model('model/PlantDiseaseDetection.h5')
     image = Image.open(uploaded_image)
     image = np.resize(image,(256,256,3))
     image = tf.keras.utils.img_to_array(image)

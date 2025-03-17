@@ -64,4 +64,3 @@ if st.button("Login"):
 if st.button("Sign Up"):
     st.switch_page('pages/signup.py')
 # .st-emotion-cache-6qob1r eczjsme3 {visibility: hidden;}
-    

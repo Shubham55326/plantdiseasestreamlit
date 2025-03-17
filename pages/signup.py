@@ -1,5 +1,5 @@
 import streamlit as st
-from pymongo import MongoClient
+import mysql.connector
 
 hide_menu_style = """
     <style>
@@ -57,21 +57,33 @@ hide_menu_style = """
     </footer>
     """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
-client = MongoClient('mongodb+srv://shubhammeena55326:7067%40Smeena@cluster0.i87egsm.mongodb.net/?tls=true&tlsAllowInvalidHostnames=true&tlsAllowInvalidCertificates=true')
-db = client['lab']
+conn = mysql.connector.connect(
+    host='shortline.proxy.rlwy.net',
+    user='root',
+    port = 12456,
+    password='sFxupelzPQlszxKpnYhRPhpofwraYDxl',
+    database='railway'
+)
 
-
-def signup(name1,username1,password1):
-    collection1 = db['UserData']
-    if collection1.find_one({'Username':username1}):
+def signup(username1,password1,name1):
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("select username,password1 from userdata")
+    row = cursor.fetchall()
+    for ro in row:
+        user = ro['username']
+    if user == username1:
         st.write('User Already Exist')
-    collection1.insert_one({'Name':name1,'Username':username1,'Password':password1})
-    st.switch_page('pages/plantdisease.py')
+    else:
+        q = "insert into userdata (username,password1,name) values(%s,%s,%s)"
+        v = (username1,password1,name1)
+        cursor.execute(q,v)
+        conn.commit()
+        st.switch_page('pages/login.py')
 st.title("Sign Up")
 name1 = st.text_input('Name')
 user1 = st.text_input('Username')
 pass1 = st.text_input('Password',type='password')
 if st.button('Signup'):
-    res1 = signup(name1,user1,pass1)
+    res1 = signup(user1,pass1,name1)
 if st.button('Already Having Account Click Here'):
     st.switch_page('pages/login.py')

@@ -1,5 +1,5 @@
 import streamlit as st
-from pymongo import MongoClient
+import mysql.connector
 hide_menu_style = """
     <style>
         .st-emotion-cache-6qob1r {visibility: hidden;}
@@ -57,22 +57,35 @@ hide_menu_style = """
     """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-client = MongoClient('mongodb+srv://shubhammeena55326:7067%40Smeena@cluster0.i87egsm.mongodb.net/?tls=true&tlsAllowInvalidHostnames=true&tlsAllowInvalidCertificates=true')
-db = client['lab']
+# Extract connection parameters
 
-def login(username2,password2):
-    collection2 = db['UserData']
-    user = collection2.find_one({'Username':username2})
-    if user and user['Password'] == password2:
+# Connect to MySQL
+conn = mysql.connector.connect(
+    host='shortline.proxy.rlwy.net',
+    user='root',
+    port = 12456,
+    password='sFxupelzPQlszxKpnYhRPhpofwraYDxl',
+    database='railway'
+)
+
+print("Connected to MySQL successfully!")
+
+
+def login(username2,password2,conn):
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("select username,password1 from userdata")
+    rows = cursor.fetchall()
+    for row in rows:
+        user = row['username']
+        passs = row['password1']
+    if user and passs == password2:
         st.switch_page("pages/plantdisease.py")
     st.write('Invalid Username Or Password')
-
-
 
 st.title("Log In")
 user2 = st.text_input('Username')
 pass2 = st.text_input('Password',type='password')
 if st.button('Login'):
-    res2 = login(user2,pass2)
+    res2 = login(user2,pass2,conn)
 if st.button('Click Here to Create Account'):
     st.switch_page('pages/signup.py')
