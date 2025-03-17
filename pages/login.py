@@ -68,7 +68,6 @@ conn = mysql.connector.connect(
     database='railway'
 )
 
-print("Connected to MySQL successfully!")
 
 
 def login(username2,password2,conn):
