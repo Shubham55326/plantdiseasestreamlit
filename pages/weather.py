@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 from geopy.geocoders import Photon
-# from geopy.geocoders import Nominatim
+#from geopy.geocoders import Nominatim
 hide_menu_style ="""
     <style>
         .st-emotion-cache-6qob1r {visibility: hidden;}
@@ -61,7 +61,7 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def weatherforecast(city):
     geolocator = Photon(user_agent="MyApp")
-    # geolocator = Nominatim(user_agent="MyApp")
+    #geolocator = Nominatim(user_agent="MyApp")
     location = geolocator.geocode(city)
     lat = location.latitude
     lon = location.longitude
@@ -69,7 +69,10 @@ def weatherforecast(city):
     url1 = "https://weatherapi-com.p.rapidapi.com/current.json"
     querystring1 = {"q":f"{lat},{lon}"}
     querystring2 = {"q":f"{city}","days":"3","lang":"English"}
-    headers = {"X-RapidAPI-Key": "ed57433e70mshae16ab55c59e0fap14713bjsnb4b92b668e03","X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"}
+    headers = {
+	"x-rapidapi-key": "eb77ad0f7bmsh1340c2e9b8d99dep15ac44jsnbfac12f96c69",
+	"x-rapidapi-host": "weatherapi-com.p.rapidapi.com"
+}
     response1 = requests.get(url1, headers=headers, params=querystring1)
     response2 = requests.get(url2, headers=headers, params=querystring2)
     res1 = response1.json()
