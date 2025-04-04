@@ -68,8 +68,6 @@ conn = mysql.connector.connect(
     database='railway'
 )
 
-
-
 def login(username2,password2,conn):
     cursor = conn.cursor(dictionary=True)
     cursor.execute("select username,password1 from userdata")

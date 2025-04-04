@@ -3,7 +3,6 @@ import tensorflow as tf
 import numpy as np
 import pandas as pd
 from PIL import Image
-from pymongo import MongoClient
 hide_menu_style ="""
     <style>
         .st-emotion-cache-6qob1r {visibility: hidden;}
@@ -61,18 +60,54 @@ hide_menu_style ="""
     """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-client = MongoClient('mongodb+srv://shubhammeena55326:7067%40Smeena@cluster0.i87egsm.mongodb.net/?tls=true&tlsAllowInvalidHostnames=true&tlsAllowInvalidCertificates=true')
-db = client['lab']
-collection1 = db['PlantDisease']
-doc = collection1.find({},{"_id":0,'name':1,'children.name':1})
-for i in doc:
-    classes = i['children']
-value = []
-for i in range(len(classes)):
-    value.append(classes[i]['name'])
-data = pd.DataFrame(value)
+
+data = [
+    "Apple__Apple_scab",
+    "Apple__Black_rot",
+    "Apple__Cedar_apple_rust",
+    "Apple__healthy",
+    "Blueberry__healthy",
+    "Cherry_(including_sour)__healthy",
+    "Cherry_(including_sour)__Powdery_mildew",
+    "Corn_(maize)__Cercospora_leaf_spot Gray_leaf...",
+    "Corn_(maize)__Common_rust_",
+    "Corn_(maize)__healthy",
+    "Corn_(maize)__Northern_Leaf_Blight",
+    "Grape__Black_rot",
+    "Grape__Esca_(Black_Measles)",
+    "Grape__healthy",
+    "Grape__Leaf_blight_(Isariopsis_Leaf_Spot)",
+    "Orange__Haunglongbing_(Citrus_greening)",
+    "Peach__Bacterial_spot",
+    "Peach__healthy",
+    "Pepper,_bell__Bacterial_spot",
+    "Pepper,_bell__healthy",
+    "Potato__Early_blight",
+    "Potato__healthy",
+    "Potato__Late_blight",
+    "Raspberry__healthy",
+    "Soybean__healthy",
+    "Squash__Powdery_mildew",
+    "Strawberry__healthy",
+    "Strawberry__Leaf_scorch",
+    "Tomato__Bacterial_spot",
+    "Tomato__Early_blight",
+    "Tomato__healthy",
+    "Tomato__Late_blight",
+    "Tomato__Leaf_Mold",
+    "Tomato__Septoria_leaf_spot",
+    "Tomato__Spider_mites Two-spotted_spider_mite",
+    "Tomato__Target_Spot",
+    "Tomato__Tomato_mosaic_virus",
+    "Tomato__Tomato_Yellow_Leaf_Curl_Virus"
+]
+
+# Convert to DataFrame
+data = pd.DataFrame(data, columns=["Plant_Disease"])
 for i in data:
     cla = data[i]
+
+
 
 def predictimage12(uploaded_image):
     loaded_model = tf.keras.models.load_model('model/PlantDiseaseDetection.h5')
